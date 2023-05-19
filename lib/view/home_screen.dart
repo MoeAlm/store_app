@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/services/all_categories_service.dart';
 import 'package:store_app/view/detail_screen.dart';
+import 'package:store_app/view/update_product_screen.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../components/card.dart';
@@ -127,6 +128,12 @@ class HomeScreen extends StatelessWidget {
                         itemCount: products.length,
                         itemBuilder: (context, index) {
                           return InkWell(
+                            onDoubleTap: (){
+                              //UpdateProductScreen()
+                              Navigator.push(context, MaterialPageRoute(builder: (context){
+                                return UpdateProductScreen(products: products[index],);
+                              }));
+                            },
                             onTap: (){
                               Navigator.push(context, MaterialPageRoute(builder: (context){
                                 return DetailsScreen(model: products[index]);

@@ -12,8 +12,6 @@ class GetAllProductsService {
         ProductsModel.fromJson(data[i]),
       );
     }
-    print(productsList);
-
     return productsList;
   }
 }
