@@ -8,7 +8,7 @@ import '../models/product_model.dart';
 class DetailsScreen extends StatefulWidget {
   final ProductsModel model;
 
-  DetailsScreen({super.key,required this.model});
+  const DetailsScreen({super.key,required this.model});
 
   @override
   State<DetailsScreen> createState() => _DetailsScreenState();
@@ -26,7 +26,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
           ),
         ),
@@ -81,9 +81,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
               ),
               Text(
                 '${widget.model.rating.rate} Rating',
-                style: const TextStyle(
+                style: TextStyle(
                     color: Colors.grey,
-                    fontSize: 17,
+                    fontSize: width * 0.043,
                     fontWeight: FontWeight.bold),
               ).pOnly(left: 6),
               SizedBox(width: width * 0.24,),
@@ -99,7 +99,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               ),
             ],
           ).px(8),
-          Text(
+          const Text(
             'Description',
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           ).py12().px8(),

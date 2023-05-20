@@ -54,14 +54,17 @@ class ApiHelper {
       });
     }
 
+    print("url = $url, body = $body, token = $token");
     Response response =
     await put(Uri.parse(url), body: body, headers: headers);
     //return jsonDecode(response.body);
     if (response.statusCode == 200) {
-      return jsonDecode(response.body);
+      Map<String, dynamic> data = jsonDecode(response.body);
+      print(data);
+      return data;
     } else {
       throw Exception(
-          "There's an error ${response.statusCode} with body ${jsonDecode(response.body )}");
+          "There's an error ${response.statusCode} with body ${jsonDecode(response.body)}");
     }
   }
 }

@@ -3,13 +3,15 @@ import '../models/product_model.dart';
 
 class UpdateProductService {
   Future<ProductsModel> updateProduct(
-      {required String title,
+      {required int id,
+      required String title,
         required String price,
         required String description,
         required String image,
         required String category}) async {
+    print('product id = $id');
     Map<String, dynamic> data = await ApiHelper().putApi(
-      url: 'https://fakestoreapi.com/products',
+      url: 'https://fakestoreapi.com/products/$id',
       body: {
         'title': title,
         'price': price,

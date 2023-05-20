@@ -9,7 +9,8 @@ import '../services/update_product_service.dart';
 class UpdateProductScreen extends StatefulWidget {
   final ProductsModel products;
 
-  const UpdateProductScreen({Key? key, required this.products}) : super(key: key);
+  const UpdateProductScreen({Key? key, required this.products})
+      : super(key: key);
 
   @override
   State<UpdateProductScreen> createState() => _UpdateProductScreenState();
@@ -83,12 +84,12 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
                   SizedBox(
                     width: width * 0.34,
                     child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         setState(() {
                           isLoading = true;
                         });
                         try {
-                          updateProducts();
+                          await updateProducts();
                           print('success');
                         } catch (e) {
                           setState(() {
@@ -115,12 +116,14 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
     );
   }
 
-  void updateProducts() {
-    UpdateProductService().updateProduct(
-        title: productName!,
-        price: price!,
-        description: description!,
-        image: image!,
-        category: widget.products.category);
+  Future<void> updateProducts() async {
+    await UpdateProductService().updateProduct(
+      id: widget.products.id,
+      title: productName == null ? widget.products.title : productName!,
+      price: price == null ? widget.products.price.toString() : price!,
+      description: description == null ? widget.products.description : description!,
+      image: image == null ? widget.products.image : image!,
+      category: widget.products.category,
+    );
   }
 }
